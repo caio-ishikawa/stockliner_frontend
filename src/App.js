@@ -15,6 +15,7 @@ import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import { useContext } from 'react';
 import { LoginContext, UsernameContext } from './components/UserContext'
 import { useState } from 'react';
+import { TickerValue } from './components/UserContext';
 
 const styles = makeStyles({
   container: {
@@ -42,6 +43,7 @@ function App() {
   const classes = styles()
   const [loggedIn, setLoggedIn] = useState(false)
   const [loginUsername, setLoginUsername] = useState('')
+  const [tickerValue, setTickerValue] = useState('')
 
 
   return (
@@ -50,11 +52,13 @@ function App() {
         <Switch>
           <LoginContext.Provider value={{loggedIn, setLoggedIn}}>
             <UsernameContext.Provider value={{loginUsername, setLoginUsername}}>
-              <Route exact="randomstringfornavbar" component={NavBar}/>
-              <Route exact path="/" component={Homepage}/>
-              <Route path="/results" component={ResultPage}/>
-              <Route exact path="/registration" component={Registration}/>
-              <Route exact path='/login' component={Login}/> 
+              <TickerValue.Provider value={{tickerValue, setTickerValue}}>
+                <Route exact="randomstringfornavbar" component={NavBar}/>
+                <Route exact path="/" component={Homepage}/>
+                <Route path="/results" component={ResultPage}/>
+                <Route exact path="/registration" component={Registration}/>
+                <Route exact path='/login' component={Login}/> 
+              </TickerValue.Provider>
             </UsernameContext.Provider>
           </LoginContext.Provider>
         </Switch>

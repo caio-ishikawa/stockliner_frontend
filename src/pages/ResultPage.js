@@ -17,6 +17,7 @@ import Chat from '../components/Chat'
 import { TextField, Button, Card, CardContent, CardHeader, Paper, CardActions } from '@material-ui/core'
 import AddCommentIcon from '@material-ui/icons/AddComment';
 import { TextRotateUpOutlined } from '@material-ui/icons'
+import { TickerValue } from '../components/UserContext'
 
 
 const theme = createMuiTheme({
@@ -105,10 +106,11 @@ const styles = makeStyles({
 
 const ResultPage = () => {
     const {loginUsername, setLoginUsername} = useContext(UsernameContext)
+    const {tickerValue, setTickerValue} = useContext(TickerValue)
     console.log('LOGIN USERNAME:' + loginUsername)
     const history = useHistory()
-    const value = history.location.state
-    const searchValue = value.toUpperCase()
+    ///const value = history.location.state
+    const searchValue = tickerValue.toUpperCase()
     const { loggedIn, setLoggedIn } = useContext(LoginContext) 
     const classes = styles()
     const [link, setLink] = useState('')

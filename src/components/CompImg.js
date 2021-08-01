@@ -1,11 +1,14 @@
 import Axios from 'axios'
 import { useHistory } from 'react-router-dom'
 import { useState } from 'react'
+import { useContext } from 'react'
+import { TickerValue } from './UserContext'
 
 const CompImg = () => {
+    const {tickerValue, setTickerValue} = useContext(TickerValue)
     const history = useHistory()
     const value = history.location.state
-    const searchValue = value.toUpperCase()
+    const searchValue = tickerValue
     const [link, setLink] = useState()
     const links = []
     console.log(searchValue)

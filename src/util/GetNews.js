@@ -7,6 +7,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider';
 import { useHistory } from "react-router-dom";
+import { useContext } from 'react';
+import { TickerValue } from '../components/UserContext';
 
 
 const useStyles = makeStyles({
@@ -35,8 +37,9 @@ const useStyles = makeStyles({
 })
 
 const GetNews = () => {
+    const {tickerValue, setTickerValue} = useContext(TickerValue)
     const history = useHistory()
-    const searchValue = history.location.state
+    const searchValue = tickerValue
     const titles = []
     const [title, setTitle] = useState() 
     //const [name, setName] = useState()

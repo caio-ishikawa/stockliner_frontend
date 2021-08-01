@@ -4,7 +4,7 @@ import Typography  from "@material-ui/core/Typography";
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import {useState} from 'react'
-import { LoginContext, UsernameContext } from "../components/UserContext";
+import { LoginContext, UsernameContext, TickerValue } from "../components/UserContext";
 import { useContext } from "react";
 
 
@@ -25,6 +25,7 @@ const styles = makeStyles({
 const Homepage = () => {
     const { loginUsername, setLoginUsername } = useContext(UsernameContext)
     const { loggedIn, setLoggedIn} = useContext(LoginContext)
+    const { tickerValue, setTickerValue} = useContext(TickerValue)
     const classes = styles()
     const history = useHistory()
     const userusername = history.location.state
@@ -41,6 +42,7 @@ const Homepage = () => {
 
     const handleChange = (e) => {
         setTicker(e.target.value)
+        setTickerValue(e.target.value)
         console.log(e.target.value)
     }
 

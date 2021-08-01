@@ -6,6 +6,8 @@ import {makeStyles} from "@material-ui/core/styles";
 import ApexCharts from 'apexcharts'
 import ReactApexChart from 'apexcharts'
 import { useHistory } from "react-router-dom";
+import { useContext } from 'react';
+import { TickerValue } from '../components/UserContext';
 
 const styles = makeStyles({
     container:{
@@ -15,9 +17,10 @@ const styles = makeStyles({
 })
 
 const GetData = () => {
+    const {tickerValue, setTickerValue} = useContext(TickerValue)
     console.log('getData running')
     const history = useHistory()
-    const searchValue = history.location.state
+    const searchValue = tickerValue
     const apiKey = 'DWK7LDWIV19Q5J86';
     const value = 'IBM' 
     const apiUrl = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=' + searchValue + '&apikey=' + apiKey
