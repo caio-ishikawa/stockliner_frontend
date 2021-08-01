@@ -124,49 +124,49 @@ const ResultPage = () => {
 
     var messageDiv = document.getElementById('messageDiv')
 
-    useEffect(() => {
-        if (messageDiv) {
-            messageDiv.scrollIntoView(false)
-        }
-        if (searchValue.length > 0) {
-            console.log('SEARCHVALUE ' + searchValue)
-            console.log('checking comments')
-            Axios.get('https://stockliner.herokuapp.com/comment_sections/' + searchValue)
-            .then((res) => {
-                const data = res.data
-                //console.log(data)
-                commentSection.push(data)
+    // useEffect(() => {
+    //     if (messageDiv) {
+    //         messageDiv.scrollIntoView(false)
+    //     }
+    //     if (searchValue.length > 0) {
+    //         console.log('SEARCHVALUE ' + searchValue)
+    //         console.log('checking comments')
+    //         Axios.get('https://stockliner.herokuapp.com/comment_sections/' + searchValue)
+    //         .then((res) => {
+    //             const data = res.data
+    //             //console.log(data)
+    //             commentSection.push(data)
                
-                setComments(data)
-            })
-            mapReturn = comments.map((data) => <p>{data}</p>)
-        }
-    },[])
+    //             setComments(data)
+    //         })
+    //         mapReturn = comments.map((data) => <p>{data}</p>)
+    //     }
+    // },[])
 
 
-    const postComment = () => {
-        const content = document.getElementById('commentPost').value
-        console.log(content)
-        if (loginUsername.length > 0) {
-            Axios.post("https://stockliner.herokuapp.com/add_comment", {
-                stock_name: searchValue,
-                username: loginUsername,
-                content:  content
-            })
-            .then((res) => {
-                Axios.get('https://stockliner.herokuapp.com/comment_sections/' + searchValue)
-                .then((data) => {
-                    const comm = res.data
-                    setComments(comm)
-                    console.log(comments)
-                    window.location.reload()
-                })
-                console.log(res)
-            })
-        } else {
-            alert('YOU ARE NOT LOGGED IN')
-        }
-    }
+    // const postComment = () => {
+    //     const content = document.getElementById('commentPost').value
+    //     console.log(content)
+    //     if (loginUsername.length > 0) {
+    //         Axios.post("https://stockliner.herokuapp.com/add_comment", {
+    //             stock_name: searchValue,
+    //             username: loginUsername,
+    //             content:  content
+    //         })
+    //         .then((res) => {
+    //             Axios.get('https://stockliner.herokuapp.com/comment_sections/' + searchValue)
+    //             .then((data) => {
+    //                 const comm = res.data
+    //                 setComments(comm)
+    //                 console.log(comments)
+    //                 window.location.reload()
+    //             })
+    //             console.log(res)
+    //         })
+    //     } else {
+    //         alert('YOU ARE NOT LOGGED IN')
+    //     }
+    // }
 
     return(
         <MuiThemeProvider theme={theme}>
@@ -182,7 +182,8 @@ const ResultPage = () => {
             <Grid container spacing={2} justify="center">
                 <Grid item xs={11} md={6} lg={5}  className={classes.gridChat} >
                     <GetData className={classes.accordion}/>
-                    <Card elevation={6} className={classes.commentCard}>
+                    <Chat/>
+                    {/* <Card elevation={6} className={classes.commentCard}>
                         <CardHeader align="left" title={searchValue + "'s Comments"}/>
                         <Divider className={classes.titleDiv}/>
                         <div className={classes.textPanel} id="messageDiv">
@@ -212,9 +213,7 @@ const ResultPage = () => {
                                     <Button variant="outlined" className={classes.button} disabled>Post</Button>
                                 </div>
                             }
-                            {/* <TextField variant="outlined" label="Comment" size="small" id="commentPost"/>
-                            <Button variant="outlined" className={classes.button} onClick={postComment}>Post</Button> */}
-                    </Card>
+                    </Card> */}
                 </Grid>
                 <Grid item xs={11} md={6} lg={5}>
                     <GetNews/>
