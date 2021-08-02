@@ -6,6 +6,8 @@ import { useHistory } from "react-router"
 import { Card, CardContent, CardHeader, Divider } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core'
 import { createMuiTheme } from '@material-ui/core'
+import { useContext } from "react"
+import { LoginContext, UsernameContext } from "../components/UserContext"
 
 const theme = createMuiTheme({
     palette: {
@@ -49,9 +51,11 @@ const Registration = () => {
         .then((res) => {
             console.log(res)
             console.log('test')
+            history.push('/')
+            alert("Successfully signed up!")
         })
         history.push('/')
-        alert('Succesfully signed up!')
+        alert('Successfully signed up! Please log in to activate account.')
     }
 
     const classes = styles()

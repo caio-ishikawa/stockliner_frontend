@@ -120,7 +120,6 @@ const Chat = () => {
                
                 setComments(data)
             })
-            mapReturn = comments.map((data) => <p>{data}</p>)
         }
     },[])
 
@@ -137,7 +136,7 @@ const Chat = () => {
             .then((res) => {
                 Axios.get('https://stockliner.herokuapp.com/comment_sections/' + searchValue)
                 .then((data) => {
-                    const comm = res.data
+                    const comm = data.data
                     setComments(comm)
                     console.log(comments)
                     ///window.location.reload()
@@ -148,6 +147,8 @@ const Chat = () => {
             alert('YOU ARE NOT LOGGED IN')
         }
     }
+
+    console.log(typeof comments)
 
 
 
@@ -160,7 +161,7 @@ const Chat = () => {
                     {comments ? 
                         Object.keys(comments).map((key) => {
                             return(
-                                <div className={classes.row}>
+                                <div className={classes.row} key={key}>
                                     <Paper variant="outlined" className={classes.paperDiv}>
                                         <Typography className={classes.username}variant="body">{comments[key].username}: </Typography>
                                         <Typography className={classes.content}variant="body">{comments[key].content}</Typography>

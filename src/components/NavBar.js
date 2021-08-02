@@ -36,7 +36,6 @@ const styles = makeStyles({
 const NavBar = () => {
     const {loginUsername, setLoginUsername} = useContext(UsernameContext)
     const {loggedIn, setLoggedIn} = useContext(LoginContext)
-    console.log(loggedIn + "WWWWAWAAAAAA")
     const history = useHistory()
     const state = history.location.state
     console.log(state)
